@@ -7,6 +7,8 @@
 var app = require('../app');
 var debug = require('debug')('firefly-iii-starling-bank:server');
 var http = require('http');
+// Loads the configuration from config.env to process.env
+require('dotenvJSON').config({ path: './config.json' });
 
 /**
  * Get port from environment and store in Express.
