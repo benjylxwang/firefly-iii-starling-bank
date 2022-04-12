@@ -18,12 +18,19 @@ const getAccounts = (token) => starling(token).get(`/accounts`);
 const confirmFunds = (token, id, targetAmountInMinorUnits) =>
   starling(token).get(`/accounts/${id}/confirmation-of-funds`, { params: { targetAmountInMinorUnits } });
 
-module.exports = {
-    getAvailablePeriods,
-    getStatement,
-    getStatementForRange,
-    getBalance,
-    getIdentifiers,
-    getAccounts,
-    confirmFunds
-}
+// Recurring card payments
+const getRecurringPayments = (token, accountUid) =>
+  starling(token).get(`/accounts/${accountUid}/recurring-payment`);
+
+const accounts = {
+  getAvailablePeriods,
+  getStatement,
+  getStatementForRange,
+  getBalance,
+  getIdentifiers,
+  getAccounts,
+  confirmFunds,
+  getRecurringPayments
+};
+
+module.exports = accounts;
