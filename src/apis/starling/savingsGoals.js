@@ -12,8 +12,8 @@ const createRecurringTransfer = (token, accountUid, savingsGoalUid, recurringTra
   const deleteRecurringTransfer = (token, accountUid, savingsGoalUid) =>
     starling(token).delete(`/account/${accountUid}/savings-goal/${savingsGoalUid}/recurring-transfer`, recurringTransfer);
 
-const kyc = {
-  getResult,
+const savingsGoal = {
+  addMoneyToSavingGoal, getRecurringTransfer, createRecurringTransfer, deleteRecurringTransfer
 };
 
-module.exports = kyc;
+module.exports = savingsGoal;
