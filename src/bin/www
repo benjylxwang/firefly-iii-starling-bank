@@ -3,12 +3,14 @@
 /**
  * Module dependencies.
  */
+// Loads the environment config
+require('dotenv').config({ path: './config.env' });
+let fs = require("fs");
+global.secrets = JSON.parse(fs.readFileSync(process.env.SECRETS_FILE)); // Load global secrets object
 
 var app = require('../app');
 var debug = require('debug')('firefly-iii-starling-bank:server');
 var http = require('http');
-// Loads the secrets configuration from secrets.json
-require('dotenvJSON').config({ path: './secrets.json' });
 
 /**
  * Get port from environment and store in Express.
