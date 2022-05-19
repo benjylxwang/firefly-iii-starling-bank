@@ -5,7 +5,7 @@ var logger = require("morgan");
 require("axios-debug-log");
 
 var indexRouter = require("./routes/index");
-var refreshRouter = require("./routes/refresh");
+var refreshRouter = require("./routes/sync");
 var starlingRouter = require("./routes/starling");
 
 var app = express();
@@ -31,7 +31,7 @@ app.use((req, res, next) => {
 });
 
 app.use("/", indexRouter);
-app.use("/force-refresh", refreshRouter);
+app.use("/sync", refreshRouter);
 app.use("/starling", starlingRouter);
 
 module.exports = app;
