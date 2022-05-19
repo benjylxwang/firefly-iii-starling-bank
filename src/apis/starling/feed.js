@@ -37,9 +37,9 @@ const getAttachment = (token, { accountUid, categoryUid, feedItemUid, feedItemAt
     `/feed/account/${accountUid}/category/${categoryUid}/${feedItemUid}/attachments/${feedItemAttachmentUid}`
   );
 
-const getFeedItems = (token, { accountUid, categoryUid, feedItemUid, changedSince = Date.now() }) =>
-  starling(token).get(`/feed/account/${accountUid}/category/${categoryUid}/${feedItemUid}`, {
-    params: { changedSince },
+const getFeedItems = (token, { accountUid, categoryUid, changesSince = Date.now() }) =>
+  starling(token).get(`/feed/account/${accountUid}/category/${categoryUid}`, {
+    params: { changesSince },
   });
 const getFeedItem = (token, { accountUid, categoryUid, feedItemUid }) =>
   starling(token).get(`/feed/account/${accountUid}/category/${categoryUid}/${feedItemUid}`);

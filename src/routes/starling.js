@@ -32,18 +32,9 @@ router.post("/webhooks/standing-order", async (req, res, next) => {
 
 router.post("/:section/:function", async function (req, res, next) {
   try {
-    let token = global.secrets.PERSONAL_ACCESS_TOKENS[0].token;
-    if (req.params.account) {
-      for (let account of global.secrets.PERSONAL_ACCESS_TOKENS) {
-        if (account.name === req.params.account) {
-          token = account.token;
-        }
-      }
-    }
-
     let section = starling[req.params.section];
     let func = section[req.params.function];
-    let result = await func(token, req.body);
+    let result = await func(req.token, req.body);
     res.json(result.data);
   } catch (err) {
     next(err);

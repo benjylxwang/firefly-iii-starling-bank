@@ -1,17 +1,29 @@
-const axios = require("axios");
+const firefly = require("./firefly");
 
-const TRANSACTIONS_ENDPOINT = process.env.FIREFLY_BASE_URL + "/transactions";
+const getTransactions = () => firefly.get(`/transactions`);
+const addTransaction = (transaction) => firefly.post(`/transactions`, transaction);
 
-const createTransaction = async (transaction) => {
-  const response = await axios.get(TRANSACTIONS_ENDPOINT, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: transaction,
-  });
+const getTransaction = (id) => firefly.get(`/transactions/${id}`);
+const updateTransaction = (id, transaction) => firefly.put(`/transactions/${id}`, transaction);
+const deleteTransaction = (id) => firefly.delete(`/transactions/${id}`);
 
-  return response.ok;
+const getAttachments = (id) => firefly.get(`/transactions/${id}/attachments`);
+const getPiggyBankEvents = (id) => firefly.get(`/transactions/${id}/piggy_bank_events`);
+
+const getLinks = (id) => firefly.get(`/transaction-journals/${id}/links`);
+const getTransactionJournal = (id) => firefly.get(`/transaction-journals/${id}`);
+const deleteTransactionSplit = (id) => firefly.delete(`/transaction-journals/${id}`);
+
+const transactions = {
+  getTransaction,
+  getTransactions,
+  addTransaction,
+  updateTransaction,
+  deleteTransaction,
+  getAttachments,
+  getPiggyBankEvents,
+  getLinks,
+  getTransactionJournal,
+  deleteTransactionSplit,
 };
-
-module.exports = {
-  createTransaction,
-};
+module.exports = transactions;
